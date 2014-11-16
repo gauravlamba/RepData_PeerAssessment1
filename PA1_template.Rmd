@@ -65,7 +65,7 @@ Lets make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis)
 ```{r}
 
 groupby_Interval <- data %>% group_by(interval)%>% summarize (avgSteps = mean (steps, na.rm = TRUE))
-lplot <- ggplot(data = groupby_Interval, mapping = aes(x = interval, y= avgSteps)) + geom_line(colour = "blue") + scale_x_continuous("interval of the day", breaks = seq(min(groupby_Interval$interval), max(groupby_Interval$interval), 100)) + scale_y_continuous("Average Number of Steps") +  ggtitle("Average Number of Steps taken by interval")
+lplot <- ggplot(data = groupby_Interval, mapping = aes(x = interval, y= avgSteps)) + geom_line(colour = "blue") + scale_x_continuous("interval of the day", breaks = seq(min(groupby_Interval$interval), max(groupby_Interval$interval), 200)) + scale_y_continuous("Average Number of Steps") +  ggtitle("Average Number of Steps taken by interval")
 lplot
 
 
@@ -147,8 +147,9 @@ groupby_IntervalDaytype <- data2 %>% group_by(interval, dayType) %>% summarise(a
 ```
 ```{r}
 lplot_panel <- ggplot(data = groupby_IntervalDaytype, mapping = aes(x = interval, y = avg2Steps)) +  geom_line() + facet_grid(dayType ~ .) + scale_x_continuous("Day Interval" , 
-    breaks = seq(min(groupby_IntervalDaytype$interval), max(groupby_IntervalDaytype$interval), 100)) + 
+    breaks = seq(min(groupby_IntervalDaytype$interval), max(groupby_IntervalDaytype$interval), 200)) + 
     scale_y_continuous("Average Number of Steps") + ggtitle("Average Number of Steps Taken by Interval on weekdays and weekends")
 lplot_panel
 ```
-There is a difference between weekdays and weekends. On weekdays, number of steps peak somewhere around 225 steps at 830 am where as on weekends peaks are seen around 175 steps at 10:15 am, 2:00 pm and 06:15 pm.
+
+There is a difference between weekdays and weekends. On weekdays, number of steps peak somewhere around 225 steps at 830 am where as on weekends peaks are seen around 175 steps at 10:15 am, 12:00 pm and 04:15 pm.
